@@ -257,7 +257,7 @@ public class ClinicalDataMyBatisRepository implements ClinicalDataRepository {
                         sb.append(")");
                     } else {
                         if (studyIds.stream().distinct().count() > 1) {
-                            sb.append("(studyId, sampleId) in (");
+                            sb.append(" where (studyId, sampleId) in (");
                             for (int i = 0; i < ids.size(); i++) {
                                 if (i == 0) {
                                     sb.append(String.format("('%s','%s')", studyIds.get(i), ids.get(i)));
@@ -310,7 +310,7 @@ public class ClinicalDataMyBatisRepository implements ClinicalDataRepository {
                         sb.append(")");
                     } else {
                         if (studyIds.stream().distinct().count() > 1) {
-                            sb.append("(studyId, patientId) in (");
+                            sb.append(" where (studyId, patientId) in (");
                             for (int i = 0; i < ids.size(); i++) {
                                 if (i == 0) {
                                     sb.append(String.format("('%s','%s')", studyIds.get(i), ids.get(i)));
@@ -433,7 +433,7 @@ public class ClinicalDataMyBatisRepository implements ClinicalDataRepository {
                     sb.append(")");
                 } else {
                     if (studyIds.stream().distinct().count() > 1) {
-                        sb.append("(studyId, patientId) in (");
+                        sb.append(" where (studyId, patientId) in (");
                         for (int i = 0; i < patientIds.size(); i++) {
                             if (i == 0) {
                                 sb.append(String.format("('%s','%s')", studyIds.get(i), patientIds.get(i)));
