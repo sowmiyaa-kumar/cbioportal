@@ -398,22 +398,10 @@ public class ClinicalDataMyBatisRepository implements ClinicalDataRepository {
 
         UUID uuid = UUID.randomUUID();
         String attributeList = "";
-        String studyIdList = "";
-        String patientIdList = "";
         if (attributeIds != null && attributeIds.size() > 0) {
             attributeList = String.format(" attrs=('%s')", String.join("','", attributeIds)); 
         }
-        if (studyIds != null && studyIds.size() > 0) {
-            studyIdList = String.format(" study ids=('%s')", String.join("','", studyIds)); 
-        }
-        if (patientIds != null && patientIds.size() > 0) {
-            patientIdList = String.format(" patient ids=('%s')", String.join("','", patientIds)); 
-        }
-        log.warn("entry to fetchClinicalData() : " + uuid + " (for patients detailed to sample)");
-        log.warn("fetchClinicalData() :" + attributeList + " (for patients detailed to sample)");
-        log.warn("fetchClinicalData() :" + studyIdList + " (for patients detailed to sample)");
-        log.warn("fetchClinicalData() :" + patientIdList + " (for patients detailed to sample)");
-
+        log.warn("entry to fetchClinicalData() : " + uuid + " '" + attributeList + "' (for patients detailed to sample)");
         try {
             AdhocFlightClient client = ArrowFlightClient.getClient();
             StringBuilder sb = new StringBuilder("select * from \"cbioportal_prototype\".\"database_2022_06\".\"clinical_data_patient_detailed_to_sample_select_from_set\"");
